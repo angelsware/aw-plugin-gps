@@ -3,7 +3,7 @@
 #include <platform/android/aw_jni.h>
 
 namespace Gps {
-	void CSensor_Android::addListener(IGpsListener* listener) {
+	void CSensor_Android::addListener(ISensorListener* listener) {
 		if (jclass clazz = Platform::CJniFunction::getClass("com/angelsware/gps/Sensor")) {
 			if (jmethodID method = Platform::CJniFunction::getMethod(clazz, "addListener", "(J)V")) {
 				Platform::CJni::getEnv()->CallStaticVoidMethod(clazz, method, reinterpret_cast<jlong>(listener));
@@ -11,7 +11,7 @@ namespace Gps {
 		}
 	}
 
-	void CSensor_Android::removeListener(IGpsListener* listener) {
+	void CSensor_Android::removeListener(ISensorListener* listener) {
 		if (jclass clazz = Platform::CJniFunction::getClass("com/angelsware/gps/Sensor")) {
 			if (jmethodID method = Platform::CJniFunction::getMethod(clazz, "removeListener", "(J)V")) {
 				Platform::CJni::getEnv()->CallStaticVoidMethod(clazz, method, reinterpret_cast<jlong>(listener));

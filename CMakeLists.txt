@@ -17,6 +17,7 @@ endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/common")
 	aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/src/common" source_files)
+endif()
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/${target}")
 	aux_source_directory("src/${target}" source_files)
 elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/default")

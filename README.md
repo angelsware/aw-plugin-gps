@@ -20,9 +20,8 @@ Add the **plugins** section to the **config.json** file of your project.
 ```
 
 ```
-Compass::ISensor* compassSensor = Compass::CSensorFactory::create();
-compassSensor->onCreate();
-compassSensor->addListener(this);
+Gps::ISensor* gpsSensor = Gps::CSensorFactory::create();
+gpsSensor->onCreate();
+gpsSensor->addListener(this);
 
 ```
-

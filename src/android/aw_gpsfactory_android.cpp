@@ -1,4 +1,4 @@
-#include <compass/aw_sensorfactory.h>
+#include <gps/aw_sensorfactory.h>
 #include "aw_sensor_android.h"
 
 namespace Gps {

@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.0)
-project(aw-plugin-compass)
+project(aw-plugin-gps)
 
 if("${target}" MATCHES "windows")
 	set(TARGET_WIN32 True)

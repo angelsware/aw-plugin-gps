@@ -29,4 +29,4 @@ add_library("${PROJECT_NAME}" STATIC ${source_files} ${header_files})
 
 include_directories("$ENV{AW_HOME}/include")
 target_include_directories("${PROJECT_NAME}" PUBLIC "include")
-set_target_properties("${PROJECT_NAME}" PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
+set_target_properties("${PROJECT_NAME}" PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib/${target})

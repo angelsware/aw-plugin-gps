@@ -14,6 +14,8 @@ import android.support.v4.content.ContextCompat;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.angelsware.engine.AppActivity;
+
 public class Sensor {
 	public static native void onGpsLocation(double latitude, double longitude, long timeSinceLastUpdate, long listener);
 	public static native void onRequestGpsPermissionResult(boolean granted, long listener);

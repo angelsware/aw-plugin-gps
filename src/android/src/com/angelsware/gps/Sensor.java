@@ -46,13 +46,13 @@ public class Sensor {
 
 		@Override
 		public void onLocationChanged(Location location) {
+			long currentTime = System.currentTimeMillis();
+			long timeSinceLastUpdate = currentTime - sLastUpdate;
+			sLastUpdate = currentTime;
 			sLatitude = location.getLatitude();
 			sLongitude = location.getLongitude();
 			for (Iterator<Long> i = sListeners.iterator(); i.hasNext();) {
 				Long listener = i.next();
-				long currentTime = System.currentTimeMillis();
-				long timeSinceLastUpdate = currentTime - sLastUpdate;
-				sLastUpdate = currentTime;
 				onGpsLocation(sLatitude, sLongitude, timeSinceLastUpdate, listener);
 			}
 		}

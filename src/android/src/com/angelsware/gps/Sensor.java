@@ -87,7 +87,7 @@ public class Sensor {
 	public static void requestPermission() {
 		if (ContextCompat.checkSelfPermission(AppActivity.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
 			Log.d(TAG, "requesting missing gps permission");
-			AppActivity.getActivity().requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 2);
+			AppActivity.getActivity().requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 2);
 		} else {
 			Log.w(TAG, "requesting already gotten gps permission");
 		}
@@ -103,21 +103,23 @@ public class Sensor {
 	}
 
 	public static void requestUpdates(final long minTime, final float minDistance) {
-		AppActivity.getActivity().runOnUiThread(new Runnable() {
-			public void run() {
-				if (ContextCompat.checkSelfPermission(AppActivity.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-					Log.d(TAG, "requesting gps updates");
-					sRequestingUpdates = true;
-					sMinTime = minTime;
-					sMinDistance = minDistance;
-					Location location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-					sListener.onLocationChanged(location);
-					sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, sListener);
-				} else {
-					Log.w(TAG, "requesting gps updates without permission");
+		if (!sRequestingUpdates) {
+			AppActivity.getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					if (ContextCompat.checkSelfPermission(AppActivity.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+						Log.d(TAG, "requesting gps updates");
+						sRequestingUpdates = true;
+						sMinTime = minTime;
+						sMinDistance = minDistance;
+						Location location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+						sListener.onLocationChanged(location);
+						sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, sListener);
+					} else {
+						Log.w(TAG, "requesting gps updates without permission");
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	public static void removeUpdates() {

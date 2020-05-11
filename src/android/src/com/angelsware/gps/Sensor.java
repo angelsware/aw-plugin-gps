@@ -17,7 +17,7 @@ import android.util.Log;
 import com.angelsware.engine.AppActivity;
 
 public class Sensor {
-	public static native void onGpsLocation(double latitude, double longitude, long timeSinceLastUpdate, long listener);
+	public static native void onGpsLocation(double latitude, double longitude, long timeSinceLastUpdate, float accuracy, long listener);
 	public static native void onRequestGpsPermissionResult(boolean granted, long listener);
 
 	private static String TAG = "aw";
@@ -26,6 +26,7 @@ public class Sensor {
 	private static double sLatitude = 0;
 	private static double sLongitude = 0;
 	private static long sLastUpdate = System.currentTimeMillis();
+	private static float sAccuracy = 0;
 	private static boolean sRequestingUpdates = false;
 	private static long sMinTime = 0;
 	private static float sMinDistance = 0;
@@ -52,9 +53,10 @@ public class Sensor {
 				sLastUpdate = currentTime;
 				sLatitude = location.getLatitude();
 				sLongitude = location.getLongitude();
+				sAccuracy = location.getAccuracy();
 				for (Iterator<Long> i = sListeners.iterator(); i.hasNext();) {
 					Long listener = i.next();
-					onGpsLocation(sLatitude, sLongitude, timeSinceLastUpdate, listener);
+					onGpsLocation(sLatitude, sLongitude, timeSinceLastUpdate, sAccuracy, listener);
 				}
 			}
 		}

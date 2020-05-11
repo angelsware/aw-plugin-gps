@@ -3,7 +3,7 @@
 
 JNIEXPORT void JNICALL Java_com_angelsware_gps_Sensor_onGpsLocation(JNIEnv* env, jclass clazz, jdouble latitude, jdouble longitude, jlong timeSinceLastUpdate, jlong listener) {
 	if (Gps::ISensorListener* ptr = reinterpret_cast<Gps::ISensorListener*>(listener)) {
-		ptr->onGpsLocation(latitude, longitude, timeSinceLastUpdate);
+		ptr->onGpsLocation(latitude, longitude, timeSinceLastUpdate, accuracy);
 	}
 }
 

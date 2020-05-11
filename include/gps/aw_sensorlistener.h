@@ -6,7 +6,7 @@ namespace Gps {
 	{
 	public:
 		virtual void onRequestGpsPermissionResult(bool granted) = 0;
-		virtual void onGpsLocation(double latitude, double longitude, long long timeSinceLastUpdate) = 0;
+		virtual void onGpsLocation(double latitude, double longitude, long long timeSinceLastUpdate, float accuracy) = 0;
 
 	protected:
 		virtual ~ISensorListener() {}

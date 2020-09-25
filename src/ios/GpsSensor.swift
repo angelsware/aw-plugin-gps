@@ -1,6 +1,6 @@
 import CoreLocation
 
-class Sensor: NSObject, CLLocationManagerDelegate {
+class GpsSensor: NSObject, CLLocationManagerDelegate {
     private var listeners: Set<Int64> = Set()
     private var locationManager: CLLocationManager?
     private var requestingUpdates = false
@@ -85,68 +85,68 @@ class Sensor: NSObject, CLLocationManagerDelegate {
 }
 
 @_cdecl("GpsSensor_create")
-func GpsSensor_create() -> UnsafeMutablePointer<Sensor> {
-    let sensor = UnsafeMutablePointer<Sensor>.allocate(capacity: 1)
-    sensor.initialize(to: Sensor())
+func GpsSensor_create() -> UnsafeMutablePointer<GpsSensor> {
+    let sensor = UnsafeMutablePointer<GpsSensor>.allocate(capacity: 1)
+    sensor.initialize(to: GpsSensor())
     return sensor
 }
 
 @_cdecl("GpsSensor_destroy")
-func GpsSensor_destroy(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_destroy(ptr: UnsafeMutablePointer<GpsSensor>) {
 	ptr.deallocate()
 }
 
 @_cdecl("GpsSensor_onCreate")
-func GpsSensor_onCreate(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_onCreate(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.onCreate()
 }
 
 @_cdecl("GpsSensor_onResume")
-func GpsSensor_onResume(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_onResume(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.onResume()
 }
 
 @_cdecl("GpsSensor_onStop")
-func GpsSensor_onStop(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_onStop(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.onStop()
 }
 
 @_cdecl("GpsSensor_addListener")
-func GpsSensor_addListener(ptr: UnsafeMutablePointer<Sensor>, listener: Int64) {
+func GpsSensor_addListener(ptr: UnsafeMutablePointer<GpsSensor>, listener: Int64) {
     ptr.pointee.addListener(listener: listener)
 }
 
 @_cdecl("GpsSensor_removeListener")
-func GpsSensor_removeListener(ptr: UnsafeMutablePointer<Sensor>, listener: Int64) {
+func GpsSensor_removeListener(ptr: UnsafeMutablePointer<GpsSensor>, listener: Int64) {
     ptr.pointee.removeListener(listener: listener)
 }
 
 @_cdecl("GpsSensor_clearAllListeners")
-func GpsSensor_clearAllListeners(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_clearAllListeners(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.clearAllListeners()
 }
 
 @_cdecl("GpsSensor_hasPermission")
-func GpsSensor_hasPermission(ptr: UnsafeMutablePointer<Sensor>) -> Bool {
+func GpsSensor_hasPermission(ptr: UnsafeMutablePointer<GpsSensor>) -> Bool {
     return ptr.pointee.hasPermission()
 }
 
 @_cdecl("GpsSensor_shouldShowPermissionDescription")
-func GpsSensor_shouldShowPermissionDescription(ptr: UnsafeMutablePointer<Sensor>)-> Bool {
+func GpsSensor_shouldShowPermissionDescription(ptr: UnsafeMutablePointer<GpsSensor>)-> Bool {
     return ptr.pointee.shouldShowRequestPermissionRationale()
 }
 
 @_cdecl("GpsSensor_requestPermission")
-func GpsSensor_requestPermission(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_requestPermission(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.requestPermission()
 }
 
 @_cdecl("GpsSensor_requestUpdates")
-func GpsSensor_requestUpdates(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_requestUpdates(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.requestUpdates()
 }
 
 @_cdecl("GpsSensor_removeUpdates")
-func GpsSensor_removeUpdates(ptr: UnsafeMutablePointer<Sensor>) {
+func GpsSensor_removeUpdates(ptr: UnsafeMutablePointer<GpsSensor>) {
     ptr.pointee.removeUpdates()
 }
